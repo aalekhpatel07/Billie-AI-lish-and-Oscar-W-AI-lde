@@ -175,7 +175,7 @@ class PrepareModel:
                 batch_size=kwargs.get('batch_size'),
                 validation_split=.3
                 )
-        filepath = Path(f'./models/W-AI-lde_{get_timestamp()}.h5')
+        filepath = kwargs.get('save_path')
         mdl.save_weights(filepath)
         return mdl.load_weights(filepath)
 
@@ -211,12 +211,13 @@ def generate_with_setup(**kwargs):
 
 def main():
     config = {
-        'seq_length': 100,
+        'seq_length': 10,
         'batch_size': 30,
         'epochs': 2,
-        'corpus_path': Path('./data/wilde_combined.txt'),
-        'characters': 300,
-        'model_trained': Path('./models/W-AI-lde_2021_07_20_00_11_04.h5')
+        'corpus_path': Path('./data/eilish_combined.txt'),
+        # 'save_path' : Path(f'./models/W-AI-lde_{get_timestamp()}.h5'),
+        'characters': 1000,
+        'model_trained': Path('./models/AIlish_2021_07_19_21_43_36.h5')
     }
     # train_with_setup(**config)
     generate_with_setup(**config)
